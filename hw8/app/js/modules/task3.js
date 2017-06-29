@@ -58,7 +58,7 @@ function citiesCreateHTMLList(cities, searchString) {
         li;
 
     for(let city of cities) {
-        if(city.match(re) && isValid) {
+        if(re.test(city) && isValid) {
             li = doc.createElement('li');
             li.innerText = city;
             ul.appendChild(li);
