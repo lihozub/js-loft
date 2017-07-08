@@ -342,7 +342,7 @@ function citiesCreateHTMLList(cities, searchString) {
         for (var _iterator2 = cities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
             var city = _step2.value;
 
-            if (city.match(re) && isValid) {
+            if (re.test(city) && isValid) {
                 li = doc.createElement('li');
                 li.innerText = city;
                 ul.appendChild(li);
