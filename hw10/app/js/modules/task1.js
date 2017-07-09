@@ -54,7 +54,7 @@ function createCookieTable(cookiesObject) {
             td.appendChild(button);
             tr.appendChild(td);
 
-            table.appendChild(tr);
+            addRow(table, tr);
         }
     }
 
@@ -69,14 +69,24 @@ function createCookieTable(cookiesObject) {
 function deleteCookie(buttons) {
     for(let button of buttons) {
         button.addEventListener('click', function (e) {
-            let targetCookieName = this.parentNode.parentNode.querySelectorAll('td')[0].innerText,
-                targetCookieValue = this.parentNode.parentNode.querySelectorAll('td')[1].innerText;
+            let trTarget = this.parentNode.parentNode,
+                targetCookieName = trTarget.querySelectorAll('td')[0].innerText,
+                targetCookieValue = trTarget.querySelectorAll('td')[1].innerText;
 
             console.log('Delete: ', targetCookieName, targetCookieValue);
 
             if(confirm(`Are you sure want to delete cookie "${targetCookieName}"?`)) {
                 document.cookie = `${targetCookieName}=${targetCookieValue}; expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+                deleteRow(trTarget);
             }
         });
     }
+}
+
+function deleteRow(row) {
+    row.remove();
+}
+
+function addRow(table, row) {
+    table.appendChild(row);
 }
